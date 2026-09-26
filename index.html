@@ -454,6 +454,34 @@ $("#philSchool").onchange=runPhilSearch;
 renderPhilosophers();
 openTab("home");
 $("#art").insertAdjacentHTML("afterbegin",svgFor("Duy vật biện chứng"));
+
+/* ===== V9 FINAL HNUE QUESTION ENGINE ===== */
+const HNUE_FINAL_COURSE_MAP = {
+  PHIS105:{name:"Triết học Mác – Lênin",group:"Khối học vấn chung"},
+  PHIS231:{name:"Lịch sử triết học phương Tây thời cổ, trung đại",group:"Chuyên ngành"},
+  PHIS151:{name:"Lịch sử triết học phương Đông",group:"Chuyên ngành"},
+  PHIS183:{name:"Lịch sử triết học phương Tây thời Phục hưng, cận đại và hiện đại",group:"Chuyên ngành"},
+  PHIS184:{name:"Logic học đại cương",group:"Chuyên ngành"},
+  PHIS152:{name:"Đạo đức học Mác – Lênin và giáo dục đạo đức",group:"Chuyên ngành"},
+  PHIS264:{name:"Tôn giáo học",group:"Chuyên ngành"},
+  PHIS331:{name:"Tác phẩm kinh điển triết học Mác – Lênin",group:"Chuyên ngành"},
+  PHIS364:{name:"Lịch sử Phép biện chứng",group:"Chuyên ngành"},
+  PHIS333:{name:"Triết học của các khoa học",group:"Chuyên ngành"},
+  PHIS334:{name:"Chuyên đề Chủ nghĩa duy vật biện chứng",group:"Chuyên ngành"},
+  PHIS351:{name:"Chuyên đề Chủ nghĩa duy vật lịch sử",group:"Chuyên ngành"},
+  PHIS282:{name:"Phương pháp nghiên cứu khoa học",group:"Kỹ năng học thuật"}
+};
+const HNUE_FINAL_LEVELS = {
+  "nhan-biet":"Nhận biết","thong-hieu":"Thông hiểu","van-dung":"Vận dụng","nang-cao":"Vận dụng cao"
+};
+function hnueFinalNormalizeQuestion(q){
+  if(!q.tags) q.tags=[];
+  if(q.courseCode && !q.tags.includes(q.courseCode)) q.tags.push(q.courseCode);
+  if(!q.cohort) q.cohort=["K74","K75","K76"];
+  if(!q.sourceStatus) q.sourceStatus="Biên soạn mới theo khung học phần";
+  return q;
+}
+if(typeof Q!=="undefined") Q.forEach(hnueFinalNormalizeQuestion);
 </script>
 <script>window.V16_META={version:"16.0-source-accurate-finalization",questions:Q.length,uniqueQuestionStems:new Set(Q.map(x=>x.q)).size,philosophers:PHILOSOPHERS.length,build:"2026-09-22",owner:"Taeyu - Khoa Triết học - Trường Đại học Sư phạm Hà Nội",officialAffiliation:false,sourcePolicy:"Independent educational project; references official HNUE pages and public academic sources; no claim of official HNUE affiliation.",qa:{single:Q.filter(x=>x.type==="single").length,tf:Q.filter(x=>x.type==="tf").length,scenario:Q.filter(x=>x.type==="scenario").length,multi:Q.filter(x=>x.type==="multi").length,topics:new Set(Q.map(x=>x.t)).size,keys:new Set(Q.map(x=>x.k)).size,answerInStem:Q.filter(x=>x.type!=="tf"&&(Array.isArray(x.c)?x.c.map(i=>x.a[i]):[x.a[x.c]]).some(a=>a&&x.q.toLowerCase().includes(a.toLowerCase()))).length}};</script>
 <footer class="footer">
